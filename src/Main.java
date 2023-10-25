@@ -1,5 +1,7 @@
 import java.lang.reflect.Array;
 import java.util.Arrays;
+import java.util.IntSummaryStatistics;
+import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Collectors;
@@ -27,11 +29,8 @@ public class Main {
                 .map(Object::toString)
                 .toList();
 
-
-        //Simulación de lista con cadenas vacias.
-        List<String> cadenasAleatorias_ = Arrays.asList(" ","   ","CIB3 bm", "tYAi xHN", "ñjn qaF", "7PñÑnYUTf", "YnATo8c");
-
         //Contar cuántas cadenas vacías tiene la lista de cadenas.
+        List<String> cadenasAleatorias_ = Arrays.asList(" ","   ","CIB3 bm", "tYAi xHN", "ñjn qaF", "7PñÑnYUTf", "YnATo8c");
         int cadenasVacias = (int) cadenasAleatorias_.stream()
                 .filter(x -> x.isBlank())
                 .count();
@@ -58,10 +57,37 @@ public class Main {
         String eliminandoVacios  = cadenasAleatorias___.stream()
                 .filter(x -> !x.isBlank()) //Eliminar todas las cadenas vacías de la lista.
                 .filter(x -> x.length() > 5) //Filtra la lista anterior con cadena de más de 5 caracteres.
-                .map(x -> x.toUpperCase())//Convertir las palabras a mayúsculas.
+                .map(String::toUpperCase)//Convertir las palabras a mayúsculas.
                 .collect(Collectors.joining(","));//Concatenarlos usando una coma ‘,’.
 
         System.out.println(eliminandoVacios);
+
+
+        //Implementar el siguiente ejercicio utilizando IntSummaryStatistics.
+        IntSummaryStatistics intSummaryStatistics
+                = new IntSummaryStatistics();
+
+        List<Integer> list
+                = Arrays.asList(10, 20, 30, 40, 50);
+
+        for (Integer integer : list) {
+            intSummaryStatistics.accept(integer);
+        }
+
+        // Obtener el recuento.
+        System.out.println("El recuento es :" + intSummaryStatistics.getCount());
+
+        //Obtener el minimo valor.
+        System.out.println("El valor minimo de los valores es: " + intSummaryStatistics.getMin());
+
+        //Obtener el maximo valor.
+        System.out.println("El valor máximo de los valores es: " + intSummaryStatistics.getMax());
+
+        //Obtener la suma.
+        System.out.println("La suma de los números es: " + intSummaryStatistics.getSum());
+
+        //Obtener el promedio.
+        System.out.println("El promedio es: "  + intSummaryStatistics.getAverage());
 
     }
 
